@@ -1,2 +1,0 @@
-# master-dashboard
-Master thesis 

@@ -1,0 +1,12 @@
+.container {
+  background-color: white;
+  margin: 1rem;
+  border-radius: 12;
+  padding: 1rem;
+  width: 100%;
+}
+
+.container h3 {
+  margin: 0.5rem;
+  font-size: 24;
+}

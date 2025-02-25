@@ -1,0 +1,36 @@
+.containter {
+  background-color: white;
+  margin: 1rem;
+  border-radius: 12;
+  padding: 1rem;
+  width: 100%;
+}
+
+.containter h3 {
+  margin: 0.5rem;
+  font-size: 24;
+  text-align: center;
+  font-weight: 500;
+}
+
+.tableTitles {
+  color: #686666;
+  font-size: 14;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+  /* border: 1px solid black; */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.tableTitles > * {
+  width: 25%;
+}
+
+.groupTitle {
+  width: 15%;
+}

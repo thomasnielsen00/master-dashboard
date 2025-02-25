@@ -1,0 +1,59 @@
+.signal_container {
+  margin: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+  font-size: 14;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4;
+  border: 1px solid;
+  gap: 1rem;
+}
+
+.signal_container > * {
+  width: 25%;
+}
+
+.success {
+  border-color: #86d718;
+  background-color: #e5f1d2;
+}
+
+.warning {
+  border-color: #ffc428;
+  background-color: #fff2d0;
+}
+
+.error {
+  border-color: #fe8157;
+  background-color: #feeae6;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.emoji {
+  font-size: 20;
+}
+
+.emoji:hover {
+  cursor: help;
+}
+
+.feelingContainer {
+  font-size: 24;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+
+}
+
+.feelingExplanation {
+  font-size: 12;
+  color: #686666;
+}

@@ -1,0 +1,35 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-bottom: 0;
+  font-size: larger;
+  background-color: #fff;
+}
+.link {
+  background-color: #f0e1ff;
+  color: #686666;
+  padding: 0.5rem 2rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.link:hover {
+  text-decoration: underline;
+  transform: scale(1.03);
+}
+
+.activeLink {
+  background-color: #f8f3ff;
+  color: #6918d7;
+  font-weight: 600;
+  padding: 0.5rem 2rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border: 1.5px solid #6918d7;
+  border-bottom: 0;
+  /* transform: scale(1.03);  */
+}
