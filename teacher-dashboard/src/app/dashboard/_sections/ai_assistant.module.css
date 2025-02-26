@@ -1,5 +1,24 @@
 .container {
   margin: 1rem;
-  padding: 1rem;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageContainer {
+  width: 25%;
+}
+
+.image {
+  width: 100%;
+}
+
+.aiContainer {
+  width: 70%;
+}
+
+.aiContainer h3 {
+  text-align: center;
+  padding: 0.3rem;
+  font-weight: 500;
 }

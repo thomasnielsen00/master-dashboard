@@ -7,7 +7,8 @@ import styles from "./navbar.module.css";
 const pages = [
   { name: "Hjem", path: "/" },
   { name: "Oversikt", path: "/dashboard" },
-  { name: "Oppsett", path: "/setup" },
+  { name: "Elever", path: "/students" },
+  { name: "Grupper", path: "/groups" },
 ];
 
 export default function Navbar() {
