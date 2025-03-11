@@ -9,13 +9,12 @@
   border-radius: 8;
   border: 1px solid;
   gap: 1rem;
-  max-width: 400px;
-  min-width: 370px;
+  width: 22vw;
 }
 
 .signal_container h3 {
   width: 100%;
-  font-size: 20;
+  font-size: 18;
 }
 
 .success {

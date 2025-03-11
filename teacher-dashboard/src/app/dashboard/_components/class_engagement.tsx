@@ -6,6 +6,7 @@ import EngagementLevel from "../../components/engagement_meter";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import Divider from "@mui/material/Divider";
 
 type ClassEngagementProps = {
   engagement_value: number;
@@ -17,24 +18,28 @@ export default function ClassEngagement({
   trend,
 }: ClassEngagementProps) {
   let trendIcon;
+  let trendDescription = {
+    down: "🚨 Engagement is falling",
+    up: "✅ Engagement is rising",
+    flat: "✔️ Engagement is stable",
+  };
 
   if (trend === "up") {
-    trendIcon = <TrendingUpIcon style={{ color: "green", fontSize: 60 }} />;
+    trendIcon = <TrendingUpIcon style={{ color: "green", fontSize: 50 }} />;
   } else if (trend === "flat") {
-    trendIcon = <TrendingFlatIcon style={{ color: "gray", fontSize: 60 }} />;
+    trendIcon = <TrendingFlatIcon style={{ color: "#37005B", fontSize: 50 }} />;
   } else if (trend === "down") {
-    trendIcon = <TrendingDownIcon style={{ color: "red", fontSize: 60 }} />;
+    trendIcon = <TrendingDownIcon style={{ color: "red", fontSize: 50 }} />;
   }
   return (
     <div className={styles.container}>
       <h3>Class engagement level</h3>
       <div className={styles.engagementContainer}>
         <EngagementLevel engagement_value={engagement_value} size="large" />
-        <div className={styles.icon}>
-          {trendIcon}
-          <p>Trend</p>
-        </div>
+        <div className={styles.icon}>{trendIcon}</div>
       </div>
+      <Divider />
+      <p>{trendDescription[trend]}</p>
     </div>
   );
 }

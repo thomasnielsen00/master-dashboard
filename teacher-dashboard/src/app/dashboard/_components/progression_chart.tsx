@@ -1,5 +1,6 @@
 "use client";
 import { TrendingUp } from "lucide-react";
+import styles from "./styles/progression_chart.module.css";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
   ChartConfig,
@@ -41,8 +42,7 @@ const chartConfig = {
 
 export default function ProgressionChart() {
   return (
-    <div>
-      {/* <h2>Class progression</h2> */}
+    <div className={styles.container}>
       <ChartContainer className="min-h-[200px] w-full" config={chartConfig}>
         <LineChart
           accessibilityLayer

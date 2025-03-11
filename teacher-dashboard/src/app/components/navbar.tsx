@@ -42,7 +42,7 @@ export default function Navbar() {
         </Link>
         <Avatar
           style={{
-            backgroundColor: "#6918d7",
+            backgroundColor: "#37005B",
             height: 30,
             width: 30,
             cursor: "pointer",

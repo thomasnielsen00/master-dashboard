@@ -1,11 +1,19 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  background-color: #fff;
+  border-radius: 8;
+  margin: 0.5rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border: 1px solid;
+  border-color: #3b2b46;
 }
 
 .container h3 {
-  font-size: 20;
+  font-size: 18;
   width: 100%;
 }
 
@@ -14,8 +22,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 3rem;
 }
 
-.icon p {
+.container p {
   text-align: center;
+  color: #686666;
 }

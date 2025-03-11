@@ -71,7 +71,7 @@ export default function GroupSection() {
 
   return (
     <div className={styles.containter}>
-      <h2 className={styles.title}>Gruppeoversikt</h2>
+      <h2 className={styles.title}>Group Overview</h2>
       {sortedGroups.map((group, index) => (
         <GroupDetails
           key={index}

@@ -47,7 +47,7 @@ export default function StudentSignalContainer({
     <div>
       <div className={`${styles.signal_container} ${styles[status]} `}>
         <div className={styles.name}> {name}</div>
-        <EngagementLevel engagement_value={engagement_level} />
+        <EngagementLevel engagement_value={engagement_level} size="small" />
         <div className={styles.feelingContainer}>
           <Tooltip title={name + " er " + feelings[feeling].no}>
             <p className={styles.emoji}>{feelings[feeling].emoji}</p>

@@ -22,7 +22,7 @@ export default function EngagementLevel({
   }
 
   const sizeValue = {
-    large: { width: 140, height: 100, fontSize: 20, fill: "#f1f1f1" },
+    large: { width: 130, height: 75, fontSize: 20, fill: "#f1f1f1" },
     small: { width: 100, height: 60, fontSize: 14, fill: "#fff" },
   };
 
