@@ -3,6 +3,8 @@ import styles from "./summary_section.module.css";
 import ProgressionChart from "../_components/progression_chart";
 import ClassEngagement from "../_components/class_engagement";
 import MyResponsiveLine from "../_components/graph";
+import AttentionBubble from "../_components/attention_bubble";
+import { FileX } from "lucide-react";
 
 export default function SummarySection() {
   let teacher = {
@@ -52,11 +54,10 @@ export default function SummarySection() {
     <section className={styles.section}>
       <h2>Welcome, {teacher.name}👋</h2>
       <div className={styles.container}>
-        <ClassEngagement engagement_value={50} trend="flat" />
-        {/* <ProgressionChart /> */}
         <div
           style={{
-            width: "50%",
+            width: "100%",
+            flexGrow: 1,
             margin: "0.5rem",
             backgroundColor: "#fff",
             padding: "0.2rem",
@@ -66,11 +67,17 @@ export default function SummarySection() {
           }}
         >
           <h3 style={{ fontSize: 18, padding: "1rem 1.5rem" }}>
-            Progression chart over time
+            Group progression over time
           </h3>
           <MyResponsiveLine data={testData} />
         </div>
-        <div></div>
+        <AttentionBubble
+          totalGroups={10}
+          groupsInNeed={2}
+          totalStudents={40}
+          studentsInNeed={20}
+        />
+        <ClassEngagement engagement_value={50} trend="flat" />
       </div>
     </section>
   );

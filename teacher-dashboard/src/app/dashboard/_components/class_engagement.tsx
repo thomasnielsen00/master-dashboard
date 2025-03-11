@@ -36,7 +36,10 @@ export default function ClassEngagement({
       <h3>Class engagement level</h3>
       <div className={styles.engagementContainer}>
         <EngagementLevel engagement_value={engagement_value} size="large" />
-        <div className={styles.icon}>{trendIcon}</div>
+        <div className={styles.icon}>
+          {trendIcon} <p style={{ fontSize: 14 }}>Trend</p>
+        </div>
+        <p></p>
       </div>
       <Divider />
       <p>{trendDescription[trend]}</p>

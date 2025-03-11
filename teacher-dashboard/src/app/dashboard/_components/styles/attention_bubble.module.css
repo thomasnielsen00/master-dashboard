@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  /* border: 1px solid black; */
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem;
+  border-radius: 8;
+  padding: 1rem;
+}
+
+.bubble {
+  background-color: #ffffff;
+  border-radius: 100%;
+  min-height: 110;
+  min-width: 110;
+  max-width: 220;
+  max-height: 220;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.errorBubble {
+  border: 15 solid;
+  border-color: rgb(252, 70, 70);
+  background-color: rgb(252, 225, 225);
+}
+
+.warningBubble {
+  border: 10 solid;
+  border-color: rgb(255, 190, 70);
+  background-color: rgb(255, 247, 232);
+}
+
+.successBubble {
+  border: 4 solid;
+  border-color: #86d718;
+  background-color: #fafff3;
+}
+
+.neutralBubble {
+  border: 4 solid;
+  border-color: #bf9feb;
+  background-color: #ffffff;
+}
+
+.number {
+  font-size: 24;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 14;
+  padding: 0 1rem;
+  padding-bottom: 0.5rem;
+}
