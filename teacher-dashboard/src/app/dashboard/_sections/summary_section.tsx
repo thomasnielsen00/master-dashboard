@@ -9,275 +9,41 @@ export default function SummarySection() {
     name: "Thomas",
   };
 
-  let testData = [
+  const testData = [
     {
-      id: "japan",
-      color: "hsl(264, 70%, 50%)",
+      id: "Group A",
       data: [
-        {
-          x: "plane",
-          y: 268,
-        },
-        {
-          x: "helicopter",
-          y: 123,
-        },
-        {
-          x: "boat",
-          y: 123,
-        },
-        {
-          x: "train",
-          y: 59,
-        },
-        {
-          x: "subway",
-          y: 99,
-        },
-        {
-          x: "bus",
-          y: 290,
-        },
-        {
-          x: "car",
-          y: 186,
-        },
-        {
-          x: "moto",
-          y: 4,
-        },
-        {
-          x: "bicycle",
-          y: 66,
-        },
-        {
-          x: "horse",
-          y: 10,
-        },
-        {
-          x: "skateboard",
-          y: 2,
-        },
-        {
-          x: "others",
-          y: 138,
-        },
+        { x: "0 min", y: 0.1 },
+        { x: "10 min", y: 0.2 },
+        { x: "20 min", y: 0.3 },
+        { x: "30 min", y: 0.25 },
+        { x: "40 min", y: 0.35 },
+        { x: "50 min", y: 0.4 },
+        { x: "60 min", y: 0.45 },
       ],
     },
     {
-      id: "france",
-      color: "hsl(44, 70%, 50%)",
+      id: "Group B",
       data: [
-        {
-          x: "plane",
-          y: 280,
-        },
-        {
-          x: "helicopter",
-          y: 37,
-        },
-        {
-          x: "boat",
-          y: 164,
-        },
-        {
-          x: "train",
-          y: 119,
-        },
-        {
-          x: "subway",
-          y: 47,
-        },
-        {
-          x: "bus",
-          y: 287,
-        },
-        {
-          x: "car",
-          y: 231,
-        },
-        {
-          x: "moto",
-          y: 235,
-        },
-        {
-          x: "bicycle",
-          y: 167,
-        },
-        {
-          x: "horse",
-          y: 154,
-        },
-        {
-          x: "skateboard",
-          y: 50,
-        },
-        {
-          x: "others",
-          y: 8,
-        },
+        { x: "0 min", y: 0.05 },
+        { x: "10 min", y: 0.15 },
+        { x: "20 min", y: 0.25 },
+        { x: "30 min", y: 0.2 },
+        { x: "40 min", y: 0.3 },
+        { x: "50 min", y: 0.35 },
+        { x: "60 min", y: 0.38 },
       ],
     },
     {
-      id: "us",
-      color: "hsl(117, 70%, 50%)",
+      id: "Group C",
       data: [
-        {
-          x: "plane",
-          y: 12,
-        },
-        {
-          x: "helicopter",
-          y: 68,
-        },
-        {
-          x: "boat",
-          y: 271,
-        },
-        {
-          x: "train",
-          y: 187,
-        },
-        {
-          x: "subway",
-          y: 3,
-        },
-        {
-          x: "bus",
-          y: 260,
-        },
-        {
-          x: "car",
-          y: 189,
-        },
-        {
-          x: "moto",
-          y: 269,
-        },
-        {
-          x: "bicycle",
-          y: 90,
-        },
-        {
-          x: "horse",
-          y: 162,
-        },
-        {
-          x: "skateboard",
-          y: 62,
-        },
-        {
-          x: "others",
-          y: 60,
-        },
-      ],
-    },
-    {
-      id: "germany",
-      color: "hsl(27, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 203,
-        },
-        {
-          x: "helicopter",
-          y: 273,
-        },
-        {
-          x: "boat",
-          y: 32,
-        },
-        {
-          x: "train",
-          y: 10,
-        },
-        {
-          x: "subway",
-          y: 8,
-        },
-        {
-          x: "bus",
-          y: 259,
-        },
-        {
-          x: "car",
-          y: 173,
-        },
-        {
-          x: "moto",
-          y: 177,
-        },
-        {
-          x: "bicycle",
-          y: 283,
-        },
-        {
-          x: "horse",
-          y: 209,
-        },
-        {
-          x: "skateboard",
-          y: 2,
-        },
-        {
-          x: "others",
-          y: 40,
-        },
-      ],
-    },
-    {
-      id: "norway",
-      color: "hsl(110, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 269,
-        },
-        {
-          x: "helicopter",
-          y: 40,
-        },
-        {
-          x: "boat",
-          y: 89,
-        },
-        {
-          x: "train",
-          y: 70,
-        },
-        {
-          x: "subway",
-          y: 137,
-        },
-        {
-          x: "bus",
-          y: 197,
-        },
-        {
-          x: "car",
-          y: 215,
-        },
-        {
-          x: "moto",
-          y: 276,
-        },
-        {
-          x: "bicycle",
-          y: 44,
-        },
-        {
-          x: "horse",
-          y: 128,
-        },
-        {
-          x: "skateboard",
-          y: 29,
-        },
-        {
-          x: "others",
-          y: 84,
-        },
+        { x: "0 min", y: 0.08 },
+        { x: "10 min", y: 0.18 },
+        { x: "20 min", y: 0.28 },
+        { x: "30 min", y: 0.23 },
+        { x: "40 min", y: 0.33 },
+        { x: "50 min", y: 0.38 },
+        { x: "60 min", y: 1 },
       ],
     },
   ];
@@ -288,7 +54,22 @@ export default function SummarySection() {
       <div className={styles.container}>
         <ClassEngagement engagement_value={50} trend="flat" />
         {/* <ProgressionChart /> */}
-        {/* <MyResponsiveLine data={testData} /> */}
+        <div
+          style={{
+            width: "50%",
+            margin: "0.5rem",
+            backgroundColor: "#fff",
+            padding: "0.2rem",
+            borderRadius: 8,
+            border: "1px solid",
+            borderColor: "#37005B",
+          }}
+        >
+          <h3 style={{ fontSize: 18, padding: "1rem 1.5rem" }}>
+            Progression chart over time
+          </h3>
+          <MyResponsiveLine data={testData} />
+        </div>
         <div></div>
       </div>
     </section>
