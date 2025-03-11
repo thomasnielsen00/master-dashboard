@@ -1,12 +1,35 @@
+.section {
+  width: 100%;
+}
+
+.section h2 {
+  font-size: 32;
+  margin: 1rem;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
 .container {
-  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container > * {
+  background-color: rgb(255, 255, 255);
   margin: 1rem;
   border-radius: 12;
   padding: 1rem;
   width: 100%;
+  max-width: 24vw;
 }
 
-.container h3 {
+.container h2 {
+  width: 100%;
+}
+
+.card h3 {
   margin: 0.5rem;
   font-size: 24;
+  height: 10px;
 }

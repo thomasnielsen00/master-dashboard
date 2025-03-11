@@ -1,0 +1,160 @@
+.signal_container {
+  margin: 0.5rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 14;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8;
+  border: 1px solid;
+  gap: 1rem;
+  max-width: 400px;
+  min-width: 370px;
+}
+
+.signal_container h3 {
+  width: 100%;
+  font-size: 20;
+}
+
+.success {
+  border-color: #86d718;
+  background-color: #e5f1d2;
+}
+
+.warning {
+  border-color: #ffc428;
+  background-color: #fff2d0;
+}
+
+.error {
+  border-color: #fe8157;
+  background-color: #feeae6;
+}
+
+.emojicontainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
+
+.emoji {
+  background-color: #86d718;
+  font-size: 28;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.emojierror {
+  background-color: #fe8157;
+  font-size: 28;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.emojiwarning {
+  background-color: #ffc428;
+  font-size: 28;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.emoji:hover {
+  cursor: help;
+}
+
+.emojiwarning:hover {
+  cursor: help;
+}
+
+.emojierror:hover {
+  cursor: help;
+}
+
+.name {
+  color: #686668;
+}
+
+.feelingContainer {
+  font-size: 24;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.progressOverview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.progressContainer {
+  position: relative;
+  width: 9rem;
+  height: 2rem; /* Adjust the height as needed */
+}
+
+.progress {
+  border-radius: 12;
+  width: 100%;
+  height: 100%;
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #fff;
+  border-radius: 12;
+}
+
+.progress::-webkit-progress-value {
+  border-top-left-radius: 12;
+  border-bottom-left-radius: 12;
+}
+
+.progressGood::-webkit-progress-value {
+  background-color: #86d718;
+}
+
+.progressMid::-webkit-progress-value {
+  background-color: #ffc428;
+}
+
+.progressBad::-webkit-progress-value {
+  background-color: #fe8157;
+}
+
+.progressText {
+  position: absolute;
+  top: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16;
+  font-weight: bold;
+  color: #000;
+}
+
+.engagementContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  align-items: center;
+}
+
+.button1 {
+  background-color: #37005b;
+  border-radius: 8;
+  box-shadow: 1px 1px rgb(143, 143, 143);
+  color: #fff;
+}

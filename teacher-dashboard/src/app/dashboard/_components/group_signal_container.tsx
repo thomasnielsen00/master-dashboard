@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./group_signal_container.module.css";
+import styles from "./styles/group_signal_container.module.css";
 import Tooltip from "@mui/material/Tooltip";
 
 type Student = {

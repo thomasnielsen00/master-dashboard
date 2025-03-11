@@ -12,7 +12,3 @@ export default function TeacherLayout({
     </>
   );
 }
-
-// overview 
-// students
-// groups

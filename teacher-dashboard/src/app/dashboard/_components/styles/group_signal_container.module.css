@@ -18,7 +18,6 @@
   width: 25%;
 }
 
-
 .success {
   border-color: #86d718;
   background-color: #e5f1d2;
@@ -40,6 +39,9 @@
 
 .emoji {
   font-size: 20;
+  background-color: #fe8157;
+  border-radius: 50%;
+  padding: 2px;
 }
 
 .emoji:hover {

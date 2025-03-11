@@ -4,10 +4,12 @@ import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 
 type EngagementLevelProps = {
   engagement_value: number;
+  size: "large" | "small";
 };
 
 export default function EngagementLevel({
   engagement_value,
+  size,
 }: EngagementLevelProps) {
   // Quick range check on the input
   let value_prop = 0;
@@ -19,9 +21,14 @@ export default function EngagementLevel({
     value_prop = engagement_value;
   }
 
+  const sizeValue = {
+    large: { width: 140, height: 100, fontSize: 20, fill: "#f1f1f1" },
+    small: { width: 100, height: 60, fontSize: 14, fill: "#fff" },
+  };
+
   const settings = {
-    width: 70,
-    height: 45,
+    width: sizeValue[size].width,
+    height: sizeValue[size].height,
     value: value_prop,
     startAngle: -90,
     endAngle: 90,
@@ -72,14 +79,15 @@ export default function EngagementLevel({
         cornerRadius="50%"
         sx={() => ({
           [`& .${gaugeClasses.valueText}`]: {
-            fontSize: 14,
+            fontSize: sizeValue[size].fontSize,
             color: "#686666",
+            fontWeight: 500,
           },
           [`& .${gaugeClasses.valueArc}`]: {
             fill: `url(#${gradientId})`,
           },
           [`& .${gaugeClasses.referenceArc}`]: {
-            fill: "#fff",
+            fill: sizeValue[size].fill,
           },
         })}
       />

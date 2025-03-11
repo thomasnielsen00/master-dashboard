@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styles from "./student_signal_container.module.css";
+import styles from "./styles/student_signal_container.module.css";
 import EngagementLevel from "../../components/engagement_meter";
 import Tooltip from "@mui/material/Tooltip";
 

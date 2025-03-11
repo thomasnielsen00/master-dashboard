@@ -8,13 +8,11 @@ import styles from "./page.module.css";
 export default function Dashboard() {
   return (
     <div className={styles.container}>
-      <div className={styles.row}>
+      <div className={styles.row1}>
         <SummarySection />
-        <AiAssistiantSection />
       </div>
-      <div className={styles.row}>
+      <div className={styles.row2}>
         <GroupSection />
-        <StudentSection />
       </div>
     </div>
   );

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.container h3 {
+  font-size: 20;
+  width: 100%;
+}
+
+.engagementContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.icon p {
+  text-align: center;
+}

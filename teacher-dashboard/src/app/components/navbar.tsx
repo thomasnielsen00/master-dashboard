@@ -3,31 +3,54 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import styles from "./navbar.module.css";
+import SettingsIcon from "@mui/icons-material/Settings";
+import Avatar from "@mui/material/Avatar";
+import path from "path";
 
 const pages = [
-  { name: "Hjem", path: "/" },
-  { name: "Oversikt", path: "/dashboard" },
-  { name: "Elever", path: "/students" },
-  { name: "Grupper", path: "/groups" },
+  { name: "Overview", path: "/dashboard" },
+  { name: "Groups", path: "/groups" },
+  { name: "Conclude session", path: "/conclude" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname(); // Get current route
-  console.log(pathname);
+
+  let teacher = {
+    name: "Teacher Teach",
+  };
 
   return (
     <nav className={styles.navbar}>
-      {pages.map((page) => (
-        <Link
-          className={`${
-            pathname == page.path ? styles.activeLink : styles.link
-          }`}
-          key={page.path}
-          href={page.path}
-        >
-          {page.name}
+      <div className={styles.leftSection}>
+        {pages.map((page) => (
+          <Link
+            className={`${
+              pathname == page.path ? styles.activeLink : styles.link
+            }`}
+            key={page.path}
+            href={page.path}
+          >
+            {page.name}
+          </Link>
+        ))}
+      </div>
+
+      <div className={styles.rightSection}>
+        <Link href={"/"}>
+          <SettingsIcon style={{ fontSize: 28, cursor: "pointer" }} />
         </Link>
-      ))}
+        <Avatar
+          style={{
+            backgroundColor: "#6918d7",
+            height: 30,
+            width: 30,
+            cursor: "pointer",
+          }}
+          alt={teacher.name}
+          src=""
+        />
+      </div>
     </nav>
   );
 }

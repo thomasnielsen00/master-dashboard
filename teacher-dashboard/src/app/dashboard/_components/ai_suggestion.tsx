@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ai_suggestion.module.css";
+import styles from "./styles/ai_suggestion.module.css";
 
 type AiProps = {
   textSuggestion: string;
