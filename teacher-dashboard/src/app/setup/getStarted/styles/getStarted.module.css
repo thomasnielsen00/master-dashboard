@@ -1,0 +1,38 @@
+.main {
+  background-color: #fff;
+  padding-top: 4vh;
+  display: flex;
+}
+
+.containerLeft {
+  background-color: #37005b;
+  height: 96vh;
+  width: 30%;
+  border-radius: 28 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerLeft img {
+  width: 50%;
+  height: auto;
+}
+
+.containerRight {
+  background-color: #f8f3ff;
+  height: 96vh;
+  width: 70%;
+  border-radius: 0 28 0 0;
+  padding: 4rem 6rem;
+}
+
+.containerRight h1 {
+  font-size: 42;
+  padding: 0 0 2rem 0;
+}
+
+.actionContainer {
+  min-height: 65vh;
+  width: auto;
+}

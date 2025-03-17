@@ -37,7 +37,6 @@ export default function GroupDetails({
   status,
   students,
   progress,
-  // should possibly remove the progress prop
   progress_value,
   AiSuggestions,
 }: GroupSignalContainerProps) {
@@ -94,11 +93,16 @@ export default function GroupDetails({
             </div>
           ))}
         </div>
-        <Divider>Suggested actions</Divider>
+        <Divider style={{ color: "#686666" }}>Suggested actions</Divider>
         <div>
-          <ol>
+          <ol
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             {AiSuggestions.map((suggestion, index) => (
-              <li key={index}>{suggestion}</li>
+              <li key={index}>📌 {suggestion}</li>
             ))}
           </ol>
         </div>
@@ -131,13 +135,13 @@ export default function GroupDetails({
           timeout="auto"
           unmountOnExit
         >
-          <Divider>Engasjement</Divider>
+          <Divider style={{ color: "#686666" }}>Engasjement</Divider>
 
           <div className={styles.engagementContainer}>
             <EngagementLevel engagement_value={70} size={"small"} />
             <p>{engagementComparison} </p>
           </div>
-          <Divider>Progresjon</Divider>
+          <Divider style={{ color: "#686666" }}>Progresjon</Divider>
 
           <div className={styles.progressOverview}>
             <div className={styles.progressContainer}>

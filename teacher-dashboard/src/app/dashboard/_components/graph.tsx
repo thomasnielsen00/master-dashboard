@@ -2,7 +2,7 @@
 import { ResponsiveLine } from "@nivo/line";
 
 // @ts-ignore
-export default function MyResponsiveLine({ data }) {
+export default function ProgressionGraph({ data }) {
   return (
     <div
       style={{
@@ -18,7 +18,7 @@ export default function MyResponsiveLine({ data }) {
           type: "linear",
           min: "auto",
           max: "auto",
-          stacked: true,
+          stacked: false,
           reverse: false,
         }}
         yFormat=" >-.2%"
@@ -28,15 +28,14 @@ export default function MyResponsiveLine({ data }) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          //   legend: "Time passed",
           legendOffset: 36,
           legendPosition: "middle",
           truncateTickAt: 0,
         }}
         curve="catmullRom"
         axisLeft={null}
-        pointSize={4}
         lineWidth={3}
+        pointSize={0}
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
@@ -95,7 +94,7 @@ export default function MyResponsiveLine({ data }) {
           tooltip: {
             container: {
               fontFamily: "Quicksand, sans-serif",
-              borderRadius: "8px", // ✅ Rounded tooltips
+              borderRadius: "8px",
               padding: "8px",
               background: "#ffffff",
               boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.15)",

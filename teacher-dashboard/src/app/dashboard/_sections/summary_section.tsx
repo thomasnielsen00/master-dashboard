@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./summary_section.module.css";
-import ProgressionChart from "../_components/progression_chart";
 import ClassEngagement from "../_components/class_engagement";
-import MyResponsiveLine from "../_components/graph";
+import ProgressionGraph from "../_components/graph";
 import AttentionBubble from "../_components/attention_bubble";
-import { FileX } from "lucide-react";
 
 export default function SummarySection() {
   let teacher = {
@@ -13,7 +11,7 @@ export default function SummarySection() {
 
   const testData = [
     {
-      id: "Group A",
+      id: "Group 1",
       data: [
         { x: "0 min", y: 0.1 },
         { x: "10 min", y: 0.2 },
@@ -25,7 +23,7 @@ export default function SummarySection() {
       ],
     },
     {
-      id: "Group B",
+      id: "Group 2",
       data: [
         { x: "0 min", y: 0.05 },
         { x: "10 min", y: 0.15 },
@@ -37,7 +35,7 @@ export default function SummarySection() {
       ],
     },
     {
-      id: "Group C",
+      id: "Group 3",
       data: [
         { x: "0 min", y: 0.08 },
         { x: "10 min", y: 0.18 },
@@ -46,6 +44,18 @@ export default function SummarySection() {
         { x: "40 min", y: 0.33 },
         { x: "50 min", y: 0.38 },
         { x: "60 min", y: 1 },
+      ],
+    },
+    {
+      id: "Group 4",
+      data: [
+        { x: "0 min", y: 0.18 },
+        { x: "10 min", y: 0.28 },
+        { x: "20 min", y: 0.38 },
+        { x: "30 min", y: 0.43 },
+        { x: "40 min", y: 0.53 },
+        { x: "50 min", y: 0.68 },
+        { x: "60 min", y: 0.91 },
       ],
     },
   ];
@@ -69,7 +79,7 @@ export default function SummarySection() {
           <h3 style={{ fontSize: 18, padding: "1rem 1.5rem" }}>
             Group progression over time
           </h3>
-          <MyResponsiveLine data={testData} />
+          <ProgressionGraph data={testData} />
         </div>
         <AttentionBubble
           totalGroups={10}

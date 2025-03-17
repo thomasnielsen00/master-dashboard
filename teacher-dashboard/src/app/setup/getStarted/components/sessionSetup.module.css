@@ -1,0 +1,75 @@
+.container {
+  min-height: 65vh;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 16;
+}
+
+.groupNumberContainer {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.container button {
+  padding: 0.2rem 0.5rem;
+}
+
+.groupNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.minus {
+  background-color: red;
+  border: 1px solid #ccc;
+  border-right: 0;
+  border-radius: 8 0 0 8;
+}
+
+.pluss {
+  background-color: #86d718;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-radius: 0 8 8 0;
+}
+
+.groupInput {
+  padding: 0.2rem 0.5rem;
+  width: 60px;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-right: 0;
+}
+
+.groupsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0.2rem 1.5rem;
+}
+
+.group {
+  /* border: 1px solid #ccc; */
+
+  padding: 1rem;
+  border-radius: 8;
+  margin-bottom: 10px;
+  background-color: #f8f3ff;
+}
+
+.group h3 {
+  font-weight: 500;
+  font-size: 18;
+}
+
+.nameInput {
+  padding: 0.1rem;
+  border-radius: 3;
+  width: 120px;
+  border: 1px solid #ccc;
+}

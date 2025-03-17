@@ -97,7 +97,7 @@
 
 .progressContainer {
   position: relative;
-  width: 9rem;
+  width: 6rem;
   height: 2rem; /* Adjust the height as needed */
 }
 
@@ -132,11 +132,11 @@ progress::-webkit-progress-bar {
 
 .progressText {
   position: absolute;
-  top: 2;
+  top: 4;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 16;
-  font-weight: bold;
+  font-size: 14;
+  font-weight: 600;
   color: #000;
 }
 

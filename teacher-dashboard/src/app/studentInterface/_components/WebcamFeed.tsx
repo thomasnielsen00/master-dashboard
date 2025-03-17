@@ -61,7 +61,6 @@ export default function FaceDetection() {
 
       const video = videoRef.current;
 
-      // 🚨 Prevent errors by checking if the video has valid dimensions
       if (video.videoWidth === 0 || video.videoHeight === 0) {
         console.warn(
           "Skipping detection: Video dimensions are not available yet."
@@ -103,7 +102,7 @@ export default function FaceDetection() {
         faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
       }
-    }, 500); // Lower frequency (500ms) to avoid excessive logs
+    }, 2000); // Lower frequency (500ms) to avoid excessive logs
 
     return () => clearInterval(interval);
   };

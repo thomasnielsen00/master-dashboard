@@ -1,4 +1,4 @@
-export default function SetupLayout({
+export default function GetStartedLayout({
   children,
 }: {
   children: React.ReactNode;
