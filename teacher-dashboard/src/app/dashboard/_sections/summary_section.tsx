@@ -1,13 +1,36 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import styles from "./summary_section.module.css";
 import ClassEngagement from "../_components/class_engagement";
 import ProgressionGraph from "../_components/graph";
 import AttentionBubble from "../_components/attention_bubble";
+import { fetchStudentsInNeedCount } from "@/src/api/stundentsApi";
 
 export default function SummarySection() {
+  const [studentsInNeed, setStudentsInNeed] = useState(0);
+
+  // context
   let teacher = {
     name: "Thomas",
   };
+
+  // temp data, context for later
+  const sessionId = 1;
+
+  useEffect(() => {
+    fetchStudentsInNeedCount(sessionId)
+      .then((count) => {
+        setStudentsInNeed(count);
+      })
+      .catch((err) => {
+        console.error(
+          "Error loading students in need of attention count:",
+          err
+        );
+      });
+    // add a time here to refresh the data
+  }, []);
 
   const testData = [
     {
@@ -85,7 +108,7 @@ export default function SummarySection() {
           totalGroups={10}
           groupsInNeed={2}
           totalStudents={40}
-          studentsInNeed={20}
+          studentsInNeed={studentsInNeed}
         />
         <ClassEngagement engagement_value={50} trend="flat" />
       </div>

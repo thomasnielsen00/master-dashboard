@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useEffect } from "react";
 import styles from "./group_section.module.css";
 import GroupDetails from "../_components/groupDetail";
+import { fetchGroupsBySession, Group } from "../../../api/groupsApi";
 
 const groups = [
   {
@@ -70,8 +73,16 @@ export default function GroupSection() {
   );
 
   useEffect(() => {
-    console.log("Groups", sortedGroups);
-  }, [sortedGroups]);
+    const sessionId = 1;
+
+    fetchGroupsBySession(sessionId)
+      .then((groups: Group[]) => {
+        console.log("Fetched groups:", groups);
+      })
+      .catch((err) => {
+        console.error("Error loading groups:", err);
+      });
+  }, []);
 
   return (
     <div className={styles.containter}>
