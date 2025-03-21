@@ -8,8 +8,6 @@ import EngagementLevel from "../../components/engagement_meter";
 import Divider from "@mui/material/Divider";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import AiSuggestion from "./ai_suggestion";
-
 type Student = {
   name: string;
   student_status: "success" | "warning" | "error" | string;
@@ -26,7 +24,7 @@ type Student = {
 type GroupSignalContainerProps = {
   status: "success" | "warning" | "error" | string;
   group_number: number;
-  progress: "Good" | "Mid" | "Bad" | string;
+  progress: "good" | "medium" | "bad" | string;
   progress_value: number;
   students: Student[];
   AiSuggestions: string[];
@@ -54,12 +52,6 @@ export default function GroupDetails({
     surprised: { emoji: "😲", no: "overrasket" },
     disgusted: { emoji: "🥴", no: "frastøtt" },
     neutral: { emoji: "😐", no: "nøytral" },
-  };
-
-  const status_column = {
-    success: { emoji: "✅", no: "Alt ser bra ut" },
-    warning: { emoji: "⚠️", no: "Følg ekstra med" },
-    error: { emoji: "🚨", no: "Krever handling" },
   };
 
   const engagementComparison = "10% above class average";
@@ -123,7 +115,7 @@ export default function GroupDetails({
               See more{" "}
               <ExpandMoreIcon
                 sx={{
-                  transition: "transform 0.3s ease-in-out", // Smooth transition effect
+                  transition: "transform 0.3s ease-in-out", 
                 }}
               />
             </>

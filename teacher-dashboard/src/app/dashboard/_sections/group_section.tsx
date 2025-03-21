@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./group_section.module.css";
 import GroupDetails from "../_components/groupDetail";
 
@@ -68,6 +68,10 @@ export default function GroupSection() {
     // @ts-ignore
     (a, b) => statusOrder[a.status] - statusOrder[b.status]
   );
+
+  useEffect(() => {
+    console.log("Groups", sortedGroups);
+  }, [sortedGroups]);
 
   return (
     <div className={styles.containter}>

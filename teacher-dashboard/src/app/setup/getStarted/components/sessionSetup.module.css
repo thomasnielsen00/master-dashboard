@@ -14,7 +14,7 @@
   justify-content: center;
 }
 
-.container button {
+.iconButton {
   padding: 0.2rem 0.5rem;
 }
 
@@ -29,6 +29,7 @@
   border: 1px solid #ccc;
   border-right: 0;
   border-radius: 8 0 0 8;
+  padding: 0.2rem 0.5rem;
 }
 
 .pluss {
@@ -36,6 +37,7 @@
   border: 1px solid #ccc;
   border-left: 0;
   border-radius: 0 8 8 0;
+  padding: 0.2rem 0.5rem;
 }
 
 .groupInput {
@@ -72,4 +74,32 @@
   border-radius: 3;
   width: 120px;
   border: 1px solid #ccc;
+}
+
+.studentContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.confirmButtonContainer {
+  display: flex;
+  justify-content: end;
+  padding: 0.2rem 1.5rem;
+}
+
+.confirmButton {
+  background-color: #6918d7;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.confirmButton:hover {
+  background-color: #5a13b4;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
 }

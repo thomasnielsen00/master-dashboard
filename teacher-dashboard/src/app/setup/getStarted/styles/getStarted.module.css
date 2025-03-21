@@ -2,11 +2,12 @@
   background-color: #fff;
   padding-top: 4vh;
   display: flex;
+  flex-grow: 1;
 }
 
 .containerLeft {
   background-color: #37005b;
-  height: 96vh;
+  flex-grow: 1;
   width: 30%;
   border-radius: 28 0 0 0;
   display: flex;
@@ -21,7 +22,7 @@
 
 .containerRight {
   background-color: #f8f3ff;
-  height: 96vh;
+  min-height: 96vh;
   width: 70%;
   border-radius: 0 28 0 0;
   padding: 4rem 6rem;

@@ -1,0 +1,50 @@
+-- Create the teachers table (for authentication)
+CREATE TABLE teachers (
+    teacher_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL
+);
+
+-- Create the groups table
+CREATE TABLE student_groups (
+    group_id SERIAL PRIMARY KEY,
+    group_name VARCHAR(255) NOT NULL
+);
+
+-- Create the students table (each student belongs to one group)
+CREATE TABLE students (
+    student_id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    group_id INT NOT NULL,
+    FOREIGN KEY (group_id) REFERENCES student_groups(group_id) ON DELETE CASCADE
+);
+
+-- Create the sessions table (each session is hosted by a teacher)
+CREATE TABLE sessions (
+    session_id SERIAL PRIMARY KEY,
+    start_time TIMESTAMP NOT NULL,
+    finish_time TIMESTAMP NOT NULL,
+    teacher_id INT NOT NULL,
+    FOREIGN KEY (teacher_id) REFERENCES teachers(teacher_id) ON DELETE CASCADE
+);
+
+-- Create session_groups (many-to-many relationship between sessions and groups)
+CREATE TABLE session_groups (
+    session_id INT NOT NULL,
+    group_id INT NOT NULL,
+    PRIMARY KEY (session_id, group_id),
+    FOREIGN KEY (session_id) REFERENCES sessions(session_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_id) REFERENCES student_groups(group_id) ON DELETE CASCADE
+);
+
+-- Create webcam_logs table (storing engagement data per student per session)
+CREATE TABLE webcam_logs (
+    log_id SERIAL PRIMARY KEY,
+    student_id INT NOT NULL,
+    session_id INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    emotion VARCHAR(50),
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    FOREIGN KEY (session_id) REFERENCES sessions(session_id) ON DELETE CASCADE
+);

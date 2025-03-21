@@ -9,9 +9,32 @@ export default function FaceDetection() {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [feelingsData, setFeelingsData] = useState<
+    Array<{
+      emotions: faceapi.FaceExpressions;
+      timestamp: number;
+    }>
+  >([]);
+
+  const saveFeelingsData = (emotions: faceapi.FaceExpressions) => {
+    setFeelingsData((prevFeelingsData) => [
+      ...prevFeelingsData,
+      { emotions, timestamp: Date.now() },
+    ]);
+    // console.log("Feelings Data Array:", feelingsData);
+  };
+
+  const logFeelingsData = () => {
+    console.log("Feelings Data Array:", feelingsData);
+  };
+
   useEffect(() => {
     const loadModels = async () => {
       const MODEL_URL = "/models"; // Ensure models are in /public/models
+      const feelingsData: Array<{
+        emotions: faceapi.FaceExpressions;
+        timestamp: number;
+      }> = [];
 
       await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
       await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
@@ -74,7 +97,9 @@ export default function FaceDetection() {
         .withFaceExpressions();
 
       if (detections.length > 0) {
-        console.log("Detected Emotions:", detections[0].expressions);
+        // console.log("Detected Emotions:", detections[0].expressions);
+        // console.log("test:", detections);
+        saveFeelingsData(detections[0].expressions);
 
         // If you want to get the most likely emotion:
         const emotions = detections[0].expressions;
@@ -83,7 +108,7 @@ export default function FaceDetection() {
           emotions[a] > emotions[b] ? a : b
         );
 
-        console.log("Most Likely Emotion:", highestEmotion);
+        // console.log("Most Likely Emotion:", highestEmotion);
       }
 
       const canvas = canvasRef.current;
@@ -127,6 +152,7 @@ export default function FaceDetection() {
       <button onClick={stopVideo} disabled={!stream}>
         Stop Video
       </button>
+      <button onClick={logFeelingsData}>Log data</button>
     </div>
   );
 }
