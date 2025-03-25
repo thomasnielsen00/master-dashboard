@@ -38,7 +38,7 @@ export default function GroupSection() {
   }, []);
 
   return (
-    <div className={styles.containter}>
+    <section className={styles.containter}>
       <h2 className={styles.title}>Group Overview</h2>
       {sortedGroups.map((group, index) => (
         <GroupDetails
@@ -52,6 +52,6 @@ export default function GroupSection() {
           students={group.students}
         />
       ))}
-    </div>
+    </section>
   );
 }

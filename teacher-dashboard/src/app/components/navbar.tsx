@@ -9,7 +9,7 @@ import path from "path";
 
 const pages = [
   { name: "Overview", path: "/dashboard" },
-  { name: "Groups", path: "/groups" },
+  // { name: "Groups", path: "/groups" },
   { name: "Conclude session", path: "/conclude" },
 ];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles/group_detail.module.css";
 import Tooltip from "@mui/material/Tooltip";
 import Collapse from "@mui/material/Collapse";
@@ -38,10 +38,13 @@ export default function GroupDetails({
   progress_value,
   AiSuggestions,
 }: GroupSignalContainerProps) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [shouldScroll, setShouldScroll] = useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    const newState = !expanded;
+    setExpanded(newState);
+    if (!expanded) setShouldScroll(true);
   };
 
   const feelings = {
@@ -58,7 +61,7 @@ export default function GroupDetails({
   const progressionComparison = "30% below class average";
 
   return (
-    <div>
+    <section id={`group-${group_number}`}>
       <div className={`${styles.signal_container} ${styles[status]}`}>
         <h3>Group {group_number}</h3>
         <div className={styles.emojicontainer}>
@@ -124,6 +127,12 @@ export default function GroupDetails({
           in={expanded}
           timeout="auto"
           unmountOnExit
+          onEntered={() => {
+            const element = document.getElementById(`group-${group_number}`);
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }}
         >
           <Divider style={{ color: "#686666" }}>Engagement</Divider>
 
@@ -150,6 +159,6 @@ export default function GroupDetails({
           </div>
         </Collapse>
       </div>
-    </div>
+    </section>
   );
 }
