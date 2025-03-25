@@ -7,61 +7,7 @@ import {
   fetchGroupsWithDetails,
   GroupDetailsType,
 } from "../../../api/groupsApi";
-
-// const groups = [
-//   {
-//     status: "success",
-//     progress_value: 0.5,
-//     progress: "Mid",
-//     group_number: 1,
-//     AiSuggestions: ["Thomas er lei seg, se på det", "Nils får ikke til noe"],
-//     students: [
-//       { name: "Ola", feeling: "happy", student_status: "success" },
-//       { name: "Kari", feeling: "neutral", student_status: "success" },
-//       { name: "Thomas", feeling: "sad", student_status: "error" },
-//       { name: "Nils", feeling: "sad", student_status: "warning" },
-//     ],
-//   },
-//   {
-//     status: "warning",
-//     progress_value: 0.5,
-//     progress: "Mid",
-//     group_number: 2,
-//     AiSuggestions: ["Thomas er lei seg, se på det", "Nils får ikke til noe"],
-//     students: [
-//       { name: "Ola", feeling: "happy", student_status: "success" },
-//       { name: "Kari", feeling: "neutral", student_status: "success" },
-//       { name: "Thomas", feeling: "sad", student_status: "error" },
-//       { name: "Nils", feeling: "sad", student_status: "warning" },
-//     ],
-//   },
-//   {
-//     status: "error",
-//     progress_value: 0.5,
-//     progress: "Mid",
-//     group_number: 3,
-//     AiSuggestions: ["Thomas er lei seg, se på det", "Nils får ikke til noe"],
-//     students: [
-//       { name: "Ola", feeling: "happy", student_status: "success" },
-//       { name: "Kari", feeling: "neutral", student_status: "success" },
-//       { name: "Thomas", feeling: "sad", student_status: "error" },
-//       { name: "Nils", feeling: "sad", student_status: "warning" },
-//     ],
-//   },
-//   {
-//     status: "success",
-//     progress_value: 0.5,
-//     progress: "Mid",
-//     group_number: 4,
-//     AiSuggestions: ["Thomas er lei seg, se på det", "Nils får ikke til noe"],
-//     students: [
-//       { name: "Ola", feeling: "happy", student_status: "success" },
-//       { name: "Kari", feeling: "neutral", student_status: "success" },
-//       { name: "Thomas", feeling: "sad", student_status: "error" },
-//       { name: "Nils", feeling: "sad", student_status: "warning" },
-//     ],
-//   },
-// ];
+import { useSessionContext } from "../../../context/SessionContext";
 
 const statusOrder = {
   error: 1,
@@ -69,10 +15,11 @@ const statusOrder = {
   success: 3,
 };
 
-// fix color type, neutral should be green, groups wiht two red should be red, groups wiht 3 yellow should be yellow, groups with 1 red and 1 yellow should be red
+// fix color type, neutral should be green, groups with two red should be red, groups wiht 3 yellow should be yellow, groups with 1 red and 1 yellow should be red
 
 export default function GroupSection() {
   const [groups, setGroups] = useState<GroupDetailsType[]>([]);
+  const { sessionId } = useSessionContext();
 
   const sortedGroups = [...groups].sort(
     // @ts-ignore
@@ -80,8 +27,6 @@ export default function GroupSection() {
   );
 
   useEffect(() => {
-    const sessionId = 1;
-
     fetchGroupsWithDetails(sessionId)
       .then((groups: GroupDetailsType[]) => {
         setGroups(groups);

@@ -1,24 +1,16 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useSessionContext } from "../context/SessionContext";
 
 export default function Page() {
-  const [data, setData] = useState(null);
-
-  // useEffect(() => {
-  //   // Fetch data from your backend API
-  //   fetch("http://localhost:3001/api/users") // Adjust this URL to your backend route
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("Data fetched:", data);
-  //       setData(data);
-  //     })
-  //     .catch((error) => console.error("Error fetching data:", error));
-  // }, []);
+  const { teacherName, sessionId, setSessionId } = useSessionContext();
 
   return (
     <div style={{ margin: "5rem" }}>
-      <h1 style={{ fontWeight: "600" }}>Hello Thomas</h1>
+      <h1 style={{ fontWeight: "600" }}>Hello {teacherName}</h1>
+      <p>Current Session: {sessionId}</p>
+
       <div>
         <Link href="dashboard">Trykk her for å komme til dashboadet</Link>
       </div>

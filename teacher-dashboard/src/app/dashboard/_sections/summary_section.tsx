@@ -16,6 +16,7 @@ import {
   fetchClassEngagement,
   ClassEngagementType,
 } from "@/src/api/sessionApi";
+import { useSessionContext } from "../../../context/SessionContext";
 
 export default function SummarySection() {
   const [studentsInNeed, setStudentsInNeed] = useState(0);
@@ -29,14 +30,7 @@ export default function SummarySection() {
     engagement_value: 0,
     trend: "flat",
   });
-
-  // context
-  let teacher = {
-    name: "Thomas",
-  };
-
-  // temp data, context for later
-  const sessionId = 1;
+  const { teacherName, sessionId } = useSessionContext();
 
   useEffect(() => {
     fetchStudentsTotal(sessionId)
@@ -87,7 +81,7 @@ export default function SummarySection() {
 
   return (
     <section className={styles.section}>
-      <h2>Welcome, {teacher.name}👋</h2>
+      <h2>Welcome, {teacherName}👋</h2>
       <div className={styles.container}>
         <div className={styles.graphContainer}>
           <h3>Group progression over time</h3>

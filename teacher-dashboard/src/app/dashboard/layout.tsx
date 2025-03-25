@@ -1,4 +1,5 @@
 import Navbar from "../components/navbar";
+import { SessionProvider } from "../../context/SessionContext";
 
 export default function TeacherLayout({
   children,
@@ -7,8 +8,10 @@ export default function TeacherLayout({
 }) {
   return (
     <>
-      <Navbar />
-      <main>{children}</main>
+      <SessionProvider>
+        <Navbar />
+        <main>{children}</main>
+      </SessionProvider>
     </>
   );
 }
