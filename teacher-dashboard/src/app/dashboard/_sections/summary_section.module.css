@@ -19,3 +19,18 @@
 .container h2 {
   width: 100%;
 }
+
+.graphContainer {
+  width: 100%;
+  flex-grow: 1;
+  margin: 0.5rem;
+  background-color: #fff;
+  padding: 0.2rem;
+  border-radius: 8px;
+  border: 1px solid #37005b;
+}
+
+.graphContainer h3 {
+  font-size: 18px;
+  padding: 1rem 1.5rem;
+}

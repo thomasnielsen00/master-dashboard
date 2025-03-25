@@ -45,13 +45,13 @@ export default function GroupDetails({
   };
 
   const feelings = {
-    angry: { emoji: "😡", no: "sint" },
-    fearful: { emoji: "😨", no: "redd" },
-    happy: { emoji: "😁", no: "glad" },
-    sad: { emoji: "😢", no: "lei seg" },
-    surprised: { emoji: "😲", no: "overrasket" },
-    disgusted: { emoji: "🥴", no: "frastøtt" },
-    neutral: { emoji: "😐", no: "nøytral" },
+    angry: { emoji: "😡" },
+    fearful: { emoji: "😨" },
+    happy: { emoji: "😁" },
+    sad: { emoji: "😢" },
+    surprised: { emoji: "😲" },
+    disgusted: { emoji: "🥴" },
+    neutral: { emoji: "😐" },
   };
 
   const engagementComparison = "10% above class average";
@@ -60,13 +60,11 @@ export default function GroupDetails({
   return (
     <div>
       <div className={`${styles.signal_container} ${styles[status]}`}>
-        <h3>Gruppe {group_number}</h3>
+        <h3>Group {group_number}</h3>
         <div className={styles.emojicontainer}>
           {students.map((student, index) => (
             <div key={index}>
-              <Tooltip
-                title={student.name + " er " + feelings[student.feeling].no}
-              >
+              <Tooltip title={`${student.name} is ${student.feeling}`}>
                 <span
                   className={`${
                     student.student_status === "error"
@@ -76,7 +74,7 @@ export default function GroupDetails({
                       : styles.emoji
                   }`}
                 >
-                  {feelings[student.feeling].emoji}
+                  {feelings[student.feeling]?.emoji}
                 </span>
               </Tooltip>
               <p>
@@ -115,7 +113,7 @@ export default function GroupDetails({
               See more{" "}
               <ExpandMoreIcon
                 sx={{
-                  transition: "transform 0.3s ease-in-out", 
+                  transition: "transform 0.3s ease-in-out",
                 }}
               />
             </>
@@ -127,13 +125,13 @@ export default function GroupDetails({
           timeout="auto"
           unmountOnExit
         >
-          <Divider style={{ color: "#686666" }}>Engasjement</Divider>
+          <Divider style={{ color: "#686666" }}>Engagement</Divider>
 
           <div className={styles.engagementContainer}>
             <EngagementLevel engagement_value={70} size={"small"} />
             <p>{engagementComparison} </p>
           </div>
-          <Divider style={{ color: "#686666" }}>Progresjon</Divider>
+          <Divider style={{ color: "#686666" }}>Progression</Divider>
 
           <div className={styles.progressOverview}>
             <div className={styles.progressContainer}>

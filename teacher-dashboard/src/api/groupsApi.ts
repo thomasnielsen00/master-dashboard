@@ -8,17 +8,51 @@ export interface Group {
   group_name: string;
 }
 
+export interface Student {
+  name: string;
+  student_status: "success" | "warning" | "error" | string;
+  feeling:
+    | "angry"
+    | "fearful"
+    | "happy"
+    | "sad"
+    | "surprised"
+    | "disgusted"
+    | "neutral";
+}
+
+export interface GroupDetailsType {
+  status: "success" | "warning" | "error" | string;
+  group_number: number;
+  progress: "good" | "medium" | "bad" | string;
+  progress_value: number;
+  students: Student[];
+  AiSuggestions: string[];
+}
+
 // Fetch groups by session ID
 export async function fetchGroupsBySession(
   sessionId: number
 ): Promise<Group[]> {
-  try {
-    const response = await axios.get<Group[]>(
-      `${BASE_URL}/sessions/${sessionId}/groups`
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Failed to fetch groups:", error);
-    throw error;
-  }
+  return axios
+    .get<Group[]>(`${BASE_URL}/sessions/${sessionId}/groups`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to fetch groups:", error);
+      throw error;
+    });
+}
+
+export async function fetchGroupsWithDetails(
+  sessionId: number
+): Promise<GroupDetailsType[]> {
+  return axios
+    .get<GroupDetailsType[]>(
+      `${BASE_URL}/sessions/${sessionId}/groups-with-details`
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to fetch groups with details:", error);
+      throw error;
+    });
 }

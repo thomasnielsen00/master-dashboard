@@ -1,6 +1,6 @@
 const pool = require("../db");
 
-function getStudentFeelings() {
+function getStudentsFeelings() {
   return new Promise((resolve, reject) => {
     pool
       .query(
@@ -21,7 +21,7 @@ function getStudentFeelings() {
   });
 }
 
-function getStudentAttentionNeeded(sessionId) {
+function getStudentsAttentionNeeded(sessionId) {
   return new Promise((resolve, reject) => {
     pool
       .query(
@@ -31,6 +31,7 @@ function getStudentAttentionNeeded(sessionId) {
           SELECT student_id, emotion
           FROM (
             SELECT *,
+
                    ROW_NUMBER() OVER (PARTITION BY student_id ORDER BY timestamp DESC) AS rn
             FROM webcam_logs
             WHERE session_id = $1
@@ -41,12 +42,39 @@ function getStudentAttentionNeeded(sessionId) {
         `,
         [sessionId]
       )
-      .then((result) => resolve(result.rows[0].affected_student_count))
+      .then((result) => {
+        resolve(parseInt(result.rows[0].affected_student_count, 10));
+      })
       .catch((error) => {
-        console.error("Database error (getStudentAttentionNeeded):", error);
+        console.error("Database error (getStudentsAttentionNeeded):", error);
         reject(error);
       });
   });
 }
 
-module.exports = { getStudentFeelings, getStudentAttentionNeeded };
+function getStudentsTotalCount(sessionId) {
+  return pool
+    .query(
+      `
+        SELECT COUNT(*) AS total_students
+        FROM students s
+        JOIN student_groups g ON s.group_id = g.group_id
+        JOIN session_groups sg ON g.group_id = sg.group_id
+        WHERE sg.session_id = $1
+        `,
+      [sessionId]
+    )
+    .then((result) => {
+      return parseInt(result.rows[0].total_students, 10);
+    })
+    .catch((error) => {
+      console.error("Database error (getStudentCountBySession):", error);
+      throw error;
+    });
+}
+
+module.exports = {
+  getStudentsFeelings,
+  getStudentsAttentionNeeded,
+  getStudentsTotalCount,
+};

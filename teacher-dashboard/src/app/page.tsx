@@ -5,16 +5,16 @@ import React, { useState, useEffect } from "react";
 export default function Page() {
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    // Fetch data from your backend API
-    fetch("http://localhost:3001/api/users") // Adjust this URL to your backend route
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Data fetched:", data);
-        setData(data);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  // useEffect(() => {
+  //   // Fetch data from your backend API
+  //   fetch("http://localhost:3001/api/users") // Adjust this URL to your backend route
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Data fetched:", data);
+  //       setData(data);
+  //     })
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
 
   return (
     <div style={{ margin: "5rem" }}>
