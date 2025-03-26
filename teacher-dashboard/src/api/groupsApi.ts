@@ -26,6 +26,7 @@ export interface GroupDetailsType {
   group_number: number;
   progress: "good" | "medium" | "bad" | string;
   progress_value: number;
+  engagement: number;
   students: Student[];
   AiSuggestions: string[];
 }
@@ -53,6 +54,18 @@ export async function fetchGroupsWithDetails(
     .then((response) => response.data)
     .catch((error) => {
       console.error("Failed to fetch groups with details:", error);
+      throw error;
+    });
+}
+
+export async function fetchGroupsInNeedCount(
+  sessionId: number
+): Promise<number> {
+  return axios
+    .get<number>(`${BASE_URL}/${sessionId}/groups/attentionNeeded`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to fetch groups in need count:", error);
       throw error;
     });
 }

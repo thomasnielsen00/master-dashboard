@@ -9,7 +9,10 @@ import {
   fetchStudentsInNeedCount,
   fetchStudentsTotal,
 } from "@/src/api/stundentsApi";
-import { fetchGroupsBySession } from "@/src/api/groupsApi";
+import {
+  fetchGroupsBySession,
+  fetchGroupsInNeedCount,
+} from "@/src/api/groupsApi";
 import {
   fetchClassProgression,
   ClassProgressionType,
@@ -23,14 +26,34 @@ export default function SummarySection() {
   const [totalStudents, setTotalStudents] = useState(0);
   const [totalGroups, setTotalGroups] = useState(0);
   const [groupsInNeed, setGroupsInNeed] = useState(0);
+
   const [classProgression, setClassProgression] = useState<
     ClassProgressionType[]
   >([]);
-  const [classEngagement, setClassEngagement] = useState<ClassEngagementType>({
-    engagement_value: 0,
-    trend: "flat",
-  });
+  const [classEngagement, setClassEngagement] = useState(0);
+  const [classEngagementHistory, setClassEngagementHistory] = useState([30]);
+  const [engagementTrend, setEngagementTrend] = useState<Trend>("flat");
   const { teacherName, sessionId } = useSessionContext();
+
+  type Trend = "up" | "down" | "flat";
+
+  interface EngagementRecord {
+    engagement_value: number;
+  }
+
+  function getEngagementTrend(history: number[]): Trend {
+    // If we have fewer than 3 points, default to flat
+    if (history.length < 2) return "flat";
+
+    const last = history[history.length - 1];
+    const prev = history[history.length - 2];
+
+    const delta = last - prev;
+    if (Math.abs(delta) < 2) {
+      return "flat"; // small changes are considered flat
+    }
+    return delta > 0 ? "up" : "down";
+  }
 
   useEffect(() => {
     fetchStudentsTotal(sessionId)
@@ -60,6 +83,14 @@ export default function SummarySection() {
         console.error("Error loading total groups count:", err);
       });
 
+    fetchGroupsInNeedCount(sessionId)
+      .then((count) => {
+        setGroupsInNeed(count);
+      })
+      .catch((err) => {
+        console.error("Error loading groups in need of attention count:", err);
+      });
+
     fetchClassProgression(sessionId)
       .then((progression) => {
         setClassProgression(progression);
@@ -70,14 +101,20 @@ export default function SummarySection() {
 
     fetchClassEngagement(sessionId)
       .then((engagement) => {
-        setClassEngagement(engagement);
-        console.log(engagement);
+        setClassEngagement(Number(engagement));
+        console.log("engagement", engagement);
+        setClassEngagementHistory((prev) => [...prev, Number(engagement)]);
       })
       .catch((err) => {
         console.error("Error loading class engagement data:", err);
       });
     // add a time here to refresh the data
   }, []);
+
+  useEffect(() => {
+    setEngagementTrend(getEngagementTrend(classEngagementHistory));
+    console.log(classEngagementHistory);
+  }, [classEngagementHistory]);
 
   return (
     <section className={styles.section}>
@@ -90,15 +127,15 @@ export default function SummarySection() {
         <div style={{ width: "456px" }}>
           <AttentionBubble
             totalGroups={totalGroups}
-            groupsInNeed={1}
+            groupsInNeed={groupsInNeed}
             totalStudents={totalStudents}
             studentsInNeed={studentsInNeed}
           />
         </div>
         <div>
           <ClassEngagement
-            engagement_value={classEngagement.engagement_value}
-            trend={classEngagement.trend}
+            engagement_value={classEngagement}
+            trend={engagementTrend}
           />
         </div>
       </div>

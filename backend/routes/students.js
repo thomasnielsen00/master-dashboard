@@ -5,6 +5,10 @@ const {
   getStudentsAttentionNeeded,
   getStudentsTotalCount,
 } = require("../database/students");
+const {
+  getStudentEngagement,
+  getGroupEngagement,
+} = require("../database/groups");
 
 // this should not be used in production
 router.get("/students/feelings", async (req, res) => {

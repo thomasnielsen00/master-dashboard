@@ -26,6 +26,7 @@ type GroupSignalContainerProps = {
   group_number: number;
   progress: "good" | "medium" | "bad" | string;
   progress_value: number;
+  engagement: number;
   students: Student[];
   AiSuggestions: string[];
 };
@@ -36,6 +37,7 @@ export default function GroupDetails({
   students,
   progress,
   progress_value,
+  engagement,
   AiSuggestions,
 }: GroupSignalContainerProps) {
   const [expanded, setExpanded] = useState(false);
@@ -137,7 +139,7 @@ export default function GroupDetails({
           <Divider style={{ color: "#686666" }}>Engagement</Divider>
 
           <div className={styles.engagementContainer}>
-            <EngagementLevel engagement_value={70} size={"small"} />
+            <EngagementLevel engagement_value={engagement} size={"small"} />
             <p>{engagementComparison} </p>
           </div>
           <Divider style={{ color: "#686666" }}>Progression</Divider>

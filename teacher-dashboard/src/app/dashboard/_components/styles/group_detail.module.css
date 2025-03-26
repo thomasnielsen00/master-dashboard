@@ -118,15 +118,15 @@ progress::-webkit-progress-bar {
   border-bottom-left-radius: 12;
 }
 
-.progressGood::-webkit-progress-value {
+.progressgood::-webkit-progress-value {
   background-color: #86d718;
 }
 
-.progressMid::-webkit-progress-value {
+.progressmedium::-webkit-progress-value {
   background-color: #ffc428;
 }
 
-.progressBad::-webkit-progress-value {
+.progressbad::-webkit-progress-value {
   background-color: #fe8157;
 }
 

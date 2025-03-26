@@ -3,6 +3,11 @@ import { ResponsiveLine } from "@nivo/line";
 
 // @ts-ignore
 export default function ProgressionGraph({ data }) {
+  const labeledData = data.map((group: any) => ({
+    ...group,
+    id: `Group ${group.id}`,
+  }));
+
   return (
     <div
       style={{
@@ -11,7 +16,7 @@ export default function ProgressionGraph({ data }) {
       }}
     >
       <ResponsiveLine
-        data={data}
+        data={labeledData}
         margin={{ top: 0, right: 110, bottom: 36, left: 36 }}
         xScale={{ type: "point" }}
         yScale={{
