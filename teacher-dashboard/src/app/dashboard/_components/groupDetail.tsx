@@ -28,7 +28,7 @@ type GroupSignalContainerProps = {
   progress_value: number;
   engagement: number;
   students: Student[];
-  AiSuggestions: string[];
+  summary: string[];
   ClassEngagementAvg: number;
   ClassProgressionAvg: number;
 };
@@ -40,7 +40,7 @@ export default function GroupDetails({
   progress,
   progress_value,
   engagement,
-  AiSuggestions,
+  summary,
   ClassEngagementAvg,
   ClassProgressionAvg,
 }: GroupSignalContainerProps) {
@@ -114,7 +114,7 @@ export default function GroupDetails({
             </div>
           ))}
         </div>
-        <Divider style={{ color: "#686666" }}>Suggested actions</Divider>
+        <Divider style={{ color: "#686666" }}>Summary</Divider>
         <div>
           <ol
             style={{
@@ -122,7 +122,7 @@ export default function GroupDetails({
               flexDirection: "column",
             }}
           >
-            {AiSuggestions.map((suggestion, index) => (
+            {summary.map((suggestion, index) => (
               <li key={index}>📌 {suggestion}</li>
             ))}
           </ol>

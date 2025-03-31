@@ -28,7 +28,7 @@ export interface GroupDetailsType {
   progress_value: number;
   engagement: number;
   students: Student[];
-  AiSuggestions: string[];
+  summary: string[];
   classEngagementAvg: number;
   classProgressionAvg: number;
 }

@@ -48,8 +48,7 @@ export default function GroupSection() {
           progress={group.progress}
           group_number={group.group_number}
           engagement={group.engagement}
-          AiSuggestions={group.AiSuggestions}
-          // @ts-ignore
+          summary={group.summary}
           students={group.students}
           ClassEngagementAvg={group.classEngagementAvg}
           ClassProgressionAvg={group.classProgressionAvg}

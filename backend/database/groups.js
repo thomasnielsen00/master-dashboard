@@ -84,30 +84,53 @@ function getClassAverageProgression(sessionId) {
 }
 
 function getStudentStatus(emotion, engagement) {
-  // If no emotion was detected, default to "neutral"
-  if (!emotion) return "success";
+  // If no emotion was detected, treat it as "neutral"
+  if (!emotion) emotion = "neutral";
 
   const negativeFeelings = ["angry", "fearful", "disgusted"];
-  const warningFeelings = ["surprised", "sad"];
+  const warningFeelings = ["sad", "surprised"];
   const positiveFeelings = ["happy", "neutral"];
 
-  if (negativeFeelings.includes(emotion) || engagement < 40) {
-    return "error";
+  let status = "success";
+  let cause = null;
+
+  const isNegativeFeeling = negativeFeelings.includes(emotion);
+  const isLowEngagement = engagement < 40;
+
+  if (isNegativeFeeling || isLowEngagement) {
+    status = "error";
+
+    // Figure out the cause
+    if (isNegativeFeeling && isLowEngagement) {
+      cause = "both";
+    } else if (isNegativeFeeling) {
+      cause = "emotion";
+    } else {
+      cause = "engagement";
+    }
+
+    return { status, cause };
   }
 
-  if (
-    warningFeelings.includes(emotion) ||
-    (engagement >= 40 && engagement < 60)
-  ) {
-    return "warning";
+  const isWarningFeeling = warningFeelings.includes(emotion);
+  const isMediumEngagement = engagement >= 40 && engagement < 60;
+
+  if (isWarningFeeling || isMediumEngagement) {
+    status = "warning";
+
+    // If you want a cause for warnings, set it here
+    if (isWarningFeeling && isMediumEngagement) {
+      cause = "both";
+    } else if (isWarningFeeling) {
+      cause = "emotion";
+    } else {
+      cause = "engagement";
+    }
+
+    return { status, cause };
   }
 
-  if (positiveFeelings.includes(emotion) || engagement >= 60) {
-    return "success";
-  }
-
-  // fallback
-  return "success";
+  return { status, cause };
 }
 
 // based on student status, group progression, and group engagement
@@ -272,7 +295,7 @@ async function getGroupsWithDetails(sessionId) {
         progress,
         group_number: groupId,
         engagement: engagement,
-        AiSuggestions: [],
+        summary: [],
         students: [],
         classEngagementAvg,
         classProgressionAvg,
@@ -289,9 +312,23 @@ async function getGroupsWithDetails(sessionId) {
     const studentStatus = getStudentStatus(row.emotion, studentEngagement);
 
     // If the student is in an error state, add a suggestion
-    if (studentStatus === "error") {
-      groups[groupId].AiSuggestions.push(
+    if (studentStatus.status === "error" && studentStatus.cause === "emotion") {
+      groups[groupId].summary.push(
         `${row.student_name} is feeling ${row.emotion}`
+      );
+    }
+
+    if (
+      (studentStatus.status === "error" ||
+        studentStatus.status === "warning") &&
+      studentStatus.cause === "engagement"
+    ) {
+      groups[groupId].summary.push(`${row.student_name} has low engagement`);
+    }
+
+    if (studentStatus.status === "error" && studentStatus.cause === "both") {
+      groups[groupId].summary.push(
+        `${row.student_name} is feeling ${row.emotion} and has low engagement`
       );
     }
 
@@ -301,7 +338,7 @@ async function getGroupsWithDetails(sessionId) {
       name: row.student_name,
       feeling: row.emotion,
       student_engagement: studentEngagement,
-      student_status: studentStatus,
+      student_status: studentStatus.status,
     });
   }
 
