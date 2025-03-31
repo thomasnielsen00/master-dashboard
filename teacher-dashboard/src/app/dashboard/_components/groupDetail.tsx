@@ -29,6 +29,8 @@ type GroupSignalContainerProps = {
   engagement: number;
   students: Student[];
   AiSuggestions: string[];
+  ClassEngagementAvg: number;
+  ClassProgressionAvg: number;
 };
 
 export default function GroupDetails({
@@ -39,6 +41,8 @@ export default function GroupDetails({
   progress_value,
   engagement,
   AiSuggestions,
+  ClassEngagementAvg,
+  ClassProgressionAvg,
 }: GroupSignalContainerProps) {
   const [expanded, setExpanded] = useState(false);
   const [shouldScroll, setShouldScroll] = useState(false);
@@ -59,8 +63,30 @@ export default function GroupDetails({
     neutral: { emoji: "😐" },
   };
 
-  const engagementComparison = "10% above class average";
-  const progressionComparison = "30% below class average";
+  function compareToClassAverage(classAvg: number, groupValue: number): string {
+    // Prevent division by zero or invalid data
+    if (classAvg === 0) {
+      return groupValue === 0 ? "Equal to class" : "+∞% / -∞%";
+    }
+
+    console.log(classAvg);
+
+    // Calculate difference ratio
+    const difference = groupValue - classAvg;
+    const percentChange = (difference / classAvg) * 100;
+
+    // Round for display
+    const roundedPercent = Math.round(percentChange * 10) / 10;
+
+    // Return as a string with sign indicator
+    if (roundedPercent > 0) {
+      return `+${roundedPercent}% compared to class`;
+    } else if (roundedPercent < 0) {
+      return `${roundedPercent}% compared to class`;
+    } else {
+      return "Equal to class";
+    }
+  }
 
   return (
     <section id={`group-${group_number}`}>
@@ -140,7 +166,7 @@ export default function GroupDetails({
 
           <div className={styles.engagementContainer}>
             <EngagementLevel engagement_value={engagement} size={"small"} />
-            <p>{engagementComparison} </p>
+            <p>{compareToClassAverage(ClassEngagementAvg, engagement)} </p>
           </div>
           <Divider style={{ color: "#686666" }}>Progression</Divider>
 
@@ -157,7 +183,7 @@ export default function GroupDetails({
                 {Math.round(progress_value * 100)}%
               </span>
             </div>
-            <p>{progressionComparison}</p>
+            <p>{compareToClassAverage(ClassProgressionAvg, progress_value)}</p>
           </div>
         </Collapse>
       </div>

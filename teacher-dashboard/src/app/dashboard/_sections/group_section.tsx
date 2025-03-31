@@ -30,7 +30,7 @@ export default function GroupSection() {
     fetchGroupsWithDetails(sessionId)
       .then((groups: GroupDetailsType[]) => {
         setGroups(groups);
-        console.log(groups);
+        console.log("Groups loaded:", groups);
       })
       .catch((err) => {
         console.error("Error loading groups:", err);
@@ -51,6 +51,8 @@ export default function GroupSection() {
           AiSuggestions={group.AiSuggestions}
           // @ts-ignore
           students={group.students}
+          ClassEngagementAvg={group.classEngagementAvg}
+          ClassProgressionAvg={group.classProgressionAvg}
         />
       ))}
     </section>

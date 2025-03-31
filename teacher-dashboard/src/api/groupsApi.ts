@@ -29,6 +29,8 @@ export interface GroupDetailsType {
   engagement: number;
   students: Student[];
   AiSuggestions: string[];
+  classEngagementAvg: number;
+  classProgressionAvg: number;
 }
 
 // Fetch groups by session ID

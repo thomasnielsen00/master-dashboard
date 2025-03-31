@@ -1,5 +1,4 @@
 const pool = require("../db"); // Import the database connection
-
 const ClassProgression = require("../data/classProgression");
 
 // ✅ Fetch all groups in a session
@@ -38,6 +37,50 @@ function getStudentIdsByGroupAndSession(groupId, sessionId) {
       console.error("Database error (getStudentIdsByGroupAndSession):", error);
       throw error;
     });
+}
+
+function getClassEngagement(sessionId) {
+  return getGroupsBySession(sessionId)
+    .then((groups) => {
+      const groupIds = groups.map((g) => g.group_id);
+
+      const engagementPromises = groupIds.map((groupId) =>
+        getGroupEngagement(groupId, sessionId)
+      );
+
+      return Promise.all(engagementPromises);
+    })
+    .then((engagementValues) => {
+      if (engagementValues.length === 0) return 0;
+      const total = engagementValues.reduce((sum, val) => sum + val, 0);
+      const average = total / engagementValues.length;
+      return Math.round(average);
+    })
+    .catch((err) => {
+      console.error("Error calculating class engagement:", err);
+      throw err;
+    });
+}
+
+function getClassAverageProgression(sessionId) {
+  if (!Array.isArray(ClassProgression) || ClassProgression.length === 0) {
+    return 0;
+  }
+
+  let total = 0;
+  let count = 0;
+
+  ClassProgression.forEach((group) => {
+    const dataPoints = group.data;
+    if (Array.isArray(dataPoints) && dataPoints.length > 0) {
+      const newestValue = dataPoints[dataPoints.length - 1].y;
+      total += newestValue;
+      count += 1;
+    }
+  });
+
+  if (count === 0) return 0;
+  return total / count;
 }
 
 function getStudentStatus(emotion, engagement) {
@@ -202,6 +245,8 @@ async function getGroupsWithDetails(sessionId) {
   );
 
   const groups = {};
+  const classEngagementAvg = await getClassEngagement(sessionId);
+  const classProgressionAvg = await getClassAverageProgression(sessionId);
 
   // Process each row (student)
   for (const row of result.rows) {
@@ -229,6 +274,8 @@ async function getGroupsWithDetails(sessionId) {
         engagement: engagement,
         AiSuggestions: [],
         students: [],
+        classEngagementAvg,
+        classProgressionAvg,
       };
     }
 
@@ -303,4 +350,5 @@ module.exports = {
   getGroupsWithDetails,
   getStudentEngagement,
   getGroupEngagement,
+  getClassEngagement,
 };

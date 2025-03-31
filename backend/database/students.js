@@ -1,4 +1,5 @@
 const pool = require("../db");
+const { getGroupsWithDetails } = require("./groups");
 
 function getStudentsFeelings() {
   return new Promise((resolve, reject) => {
@@ -23,27 +24,22 @@ function getStudentsFeelings() {
 
 function getStudentsAttentionNeeded(sessionId) {
   return new Promise((resolve, reject) => {
-    pool
-      .query(
-        `
-        SELECT COUNT(DISTINCT student_id) AS affected_student_count
-        FROM (
-          SELECT student_id, emotion
-          FROM (
-            SELECT *,
+    getGroupsWithDetails(sessionId)
+      .then((groups) => {
+        let count = 0;
 
-                   ROW_NUMBER() OVER (PARTITION BY student_id ORDER BY timestamp DESC) AS rn
-            FROM webcam_logs
-            WHERE session_id = $1
-          ) ranked
-          WHERE rn <= 3
-            AND emotion IN ('angry', 'fearful', 'sad', 'surprised', 'disgusted')
-        ) filtered;
-        `,
-        [sessionId]
-      )
-      .then((result) => {
-        resolve(parseInt(result.rows[0].affected_student_count, 10));
+        for (const group of groups) {
+          for (const student of group.students) {
+            if (
+              student.student_status === "warning" ||
+              student.student_status === "error"
+            ) {
+              count++;
+            }
+          }
+        }
+
+        resolve(count);
       })
       .catch((error) => {
         console.error("Database error (getStudentsAttentionNeeded):", error);

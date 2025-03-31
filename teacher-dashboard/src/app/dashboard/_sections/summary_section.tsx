@@ -102,7 +102,6 @@ export default function SummarySection() {
     fetchClassEngagement(sessionId)
       .then((engagement) => {
         setClassEngagement(Number(engagement));
-        console.log("engagement", engagement);
         setClassEngagementHistory((prev) => [...prev, Number(engagement)]);
       })
       .catch((err) => {

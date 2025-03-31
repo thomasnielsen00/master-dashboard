@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require("../db"); // Ensure you have a separate db.js file
 const ClassEngagement = require("../data/classEngagement");
 const ClassProgression = require("../data/classProgression");
-const { getClassEngagement } = require("../database/sessions");
+const { getClassEngagement } = require("../database/groups");
 
 router.get("/sessions", async (req, res) => {
   try {
@@ -34,7 +34,5 @@ router.get("/sessions/:session_id/classEngagement", (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     });
 });
-
-
 
 module.exports = router;
