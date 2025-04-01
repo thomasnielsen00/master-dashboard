@@ -69,7 +69,7 @@ export default function GroupDetails({
       return groupValue === 0 ? "Equal to class" : "+∞% / -∞%";
     }
 
-    console.log(classAvg);
+
 
     // Calculate difference ratio
     const difference = groupValue - classAvg;

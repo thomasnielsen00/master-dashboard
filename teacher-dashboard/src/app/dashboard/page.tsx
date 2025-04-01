@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import GroupSection from "./_sections/group_section";
 import SummarySection from "./_sections/summary_section";

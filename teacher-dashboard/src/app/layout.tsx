@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "../context/SessionContext"; // adjust path if needed
+import { SessionProvider } from "../context/SessionContext";
 
 const quicksand = Quicksand({
   weight: ["300", "400", "500", "600", "700"],
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={quicksand.className}>
       <body>

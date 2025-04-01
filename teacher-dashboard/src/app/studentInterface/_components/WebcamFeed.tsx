@@ -21,7 +21,6 @@ export default function FaceDetection() {
       ...prevFeelingsData,
       { emotions, timestamp: Date.now() },
     ]);
-    // console.log("Feelings Data Array:", feelingsData);
   };
 
   const logFeelingsData = () => {
@@ -97,8 +96,6 @@ export default function FaceDetection() {
         .withFaceExpressions();
 
       if (detections.length > 0) {
-        // console.log("Detected Emotions:", detections[0].expressions);
-        // console.log("test:", detections);
         saveFeelingsData(detections[0].expressions);
 
         // If you want to get the most likely emotion:

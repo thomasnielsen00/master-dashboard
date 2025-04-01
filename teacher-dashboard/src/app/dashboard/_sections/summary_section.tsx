@@ -41,6 +41,10 @@ export default function SummarySection() {
     engagement_value: number;
   }
 
+  useEffect(() => {
+    console.log("Teacher Name Updated:", teacherName);
+  }, [teacherName]);
+
   function getEngagementTrend(history: number[]): Trend {
     // If we have fewer than 3 points, default to flat
     if (history.length < 2) return "flat";
@@ -56,6 +60,7 @@ export default function SummarySection() {
   }
 
   useEffect(() => {
+    console.log(teacherName, sessionId, "from summary page");
     fetchStudentsTotal(sessionId)
       .then((total) => {
         setTotalStudents(total);
@@ -112,7 +117,6 @@ export default function SummarySection() {
 
   useEffect(() => {
     setEngagementTrend(getEngagementTrend(classEngagementHistory));
-    console.log(classEngagementHistory);
   }, [classEngagementHistory]);
 
   return (

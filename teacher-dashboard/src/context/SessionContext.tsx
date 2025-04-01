@@ -1,6 +1,11 @@
 "use client";
-
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
 interface SessionContextProps {
   teacherName: string;
@@ -26,10 +31,39 @@ interface ProviderProps {
 }
 
 export const SessionProvider = ({ children }: ProviderProps) => {
-  const [teacherName, setTeacherName] = useState("Thomas");
-  const [sessionId, setSessionId] = useState(1);
-  //can change session id for different scenarios in the testing.
-  //  potentially add buttons in the front page to change session
+  const [teacherName, setTeacherNameState] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("teacherName") || "";
+    }
+    return "";
+  });
+
+  const [sessionId, setSessionIdState] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("sessionId");
+      return stored ? parseInt(stored, 10) : 1;
+    }
+    return 1;
+  });
+
+  const setTeacherName = (name: string) => {
+    setTeacherNameState(name);
+    localStorage.setItem("teacherName", name);
+  };
+
+  const setSessionId = (id: number) => {
+    setSessionIdState(id);
+    localStorage.setItem("sessionId", id.toString());
+  };
+
+  // Sync with localStorage on first load (optional safety)
+  useEffect(() => {
+    const storedName = localStorage.getItem("teacherName");
+    const storedSession = localStorage.getItem("sessionId");
+
+    if (storedName) setTeacherNameState(storedName);
+    if (storedSession) setSessionIdState(parseInt(storedSession, 10));
+  }, []);
 
   return (
     <SessionContext.Provider
