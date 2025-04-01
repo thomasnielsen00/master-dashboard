@@ -133,7 +133,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import Divider from "@mui/material/Divider";
-import { colors } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 type student = {
   name: string;
@@ -149,6 +149,7 @@ type group = {
 export default function SessionSetup() {
   const [totalGroups, setTotalGroups] = useState(0);
   const [groups, setGroups] = useState<group[]>([]);
+  const router = useRouter();
   const [studentInputs, setStudentInputs] = useState<{ [key: number]: string }>(
     {}
   );
@@ -197,7 +198,9 @@ export default function SessionSetup() {
   };
 
   const handleStudentAdd = (groupId: number) => {
-    const name = studentInputs[groupId]?.trim();
+    const rawName = studentInputs[groupId]?.trim();
+    const name =
+      rawName?.charAt(0).toUpperCase() + rawName?.slice(1).toLowerCase();
     if (!name) return;
 
     setGroups((prevGroups) =>
@@ -227,6 +230,10 @@ export default function SessionSetup() {
           : group
       )
     );
+  };
+
+  const handleConfirmGroups = () => {
+    router.push("/dashboard");
   };
 
   return (
@@ -270,6 +277,12 @@ export default function SessionSetup() {
               type="text"
               placeholder="Name"
               value={studentInputs[group.id] || ""}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault(); // Prevent form submission if inside a form
+                  handleStudentAdd(group.id);
+                }
+              }}
               onChange={(e) => handleStudentChange(group.id, e.target.value)}
               style={{
                 padding: "0.1rem",
@@ -302,6 +315,18 @@ export default function SessionSetup() {
           </div>
         ))}
       </div>
+      {totalGroups ? (
+        <div className={styles.confirmButtonContainer}>
+          <button
+            className={styles.confirmButton}
+            onClick={() => handleConfirmGroups()}
+          >
+            Confirm groups
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

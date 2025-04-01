@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import styles from "./styles/page.module.css";
+import { useSessionContext } from "@/src/context/SessionContext";
 
 export default function Setup() {
-  const name = "Thomas";
+  const { teacherName } = useSessionContext();
   return (
     <div className={styles.main}>
       <div className={styles.container}>
@@ -15,7 +18,7 @@ export default function Setup() {
           />
         </div>
         <div className={styles.rightSide}>
-          <h1>Welcome, {name} </h1>
+          <h1>Welcome, {teacherName}👋 </h1>
           <p>
             This is a dashboard that enhances learning through real-time data
             and insights. We analyze sensor data to help you as teachers, better
@@ -28,7 +31,10 @@ export default function Setup() {
                   Get started with new class
                 </Link>
               </button>
-              <button className={styles.buttonWhite}>Use previous setup</button>
+              <button className={styles.buttonWhite}>
+                {/* remeber to update session id for this */}
+                <Link href={"/dashboard"}>Use previous setup</Link>
+              </button>
               <button className={styles.buttonWhite}>
                 {" "}
                 <Link href="/">Navigate to home</Link>

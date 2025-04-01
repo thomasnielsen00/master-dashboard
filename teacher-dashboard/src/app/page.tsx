@@ -20,10 +20,16 @@ export default function Page() {
 
     console.log("name: " + teacherName);
     if (session === 1) {
-      // router.push("/dashboard");
+      // class with trouble
+      router.push("/dashboard");
     }
     if (session === 2) {
+      // this will be a good class
       router.push("/dashboard");
+    }
+
+    if (session === 3) {
+      router.push("/setup");
     }
   }
 

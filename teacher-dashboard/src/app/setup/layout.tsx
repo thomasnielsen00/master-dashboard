@@ -1,3 +1,7 @@
+"use client";
+
+import { SessionProvider } from "../../context/SessionContext";
+
 export default function SetupLayout({
   children,
 }: {
@@ -5,7 +9,9 @@ export default function SetupLayout({
 }) {
   return (
     <>
-      <main>{children}</main>
+      <main>
+        <SessionProvider>{children}</SessionProvider>
+      </main>
     </>
   );
 }

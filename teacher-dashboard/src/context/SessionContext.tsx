@@ -2,8 +2,8 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useState,
+  useEffect,
   ReactNode,
 } from "react";
 
@@ -31,39 +31,29 @@ interface ProviderProps {
 }
 
 export const SessionProvider = ({ children }: ProviderProps) => {
-  const [teacherName, setTeacherNameState] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("teacherName") || "";
-    }
-    return "";
-  });
+  const [teacherName, setTeacherName] = useState<string>(""); // initial dummy values
+  const [sessionId, setSessionId] = useState<number>(1);
+  const [isHydrated, setIsHydrated] = useState(false); // wait until client
 
-  const [sessionId, setSessionIdState] = useState<number>(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("sessionId");
-      return stored ? parseInt(stored, 10) : 1;
-    }
-    return 1;
-  });
-
-  const setTeacherName = (name: string) => {
-    setTeacherNameState(name);
-    localStorage.setItem("teacherName", name);
-  };
-
-  const setSessionId = (id: number) => {
-    setSessionIdState(id);
-    localStorage.setItem("sessionId", id.toString());
-  };
-
-  // Sync with localStorage on first load (optional safety)
+  // Read localStorage on client only
   useEffect(() => {
     const storedName = localStorage.getItem("teacherName");
     const storedSession = localStorage.getItem("sessionId");
 
-    if (storedName) setTeacherNameState(storedName);
-    if (storedSession) setSessionIdState(parseInt(storedSession, 10));
+    if (storedName) setTeacherName(storedName);
+    if (storedSession) setSessionId(parseInt(storedSession, 10));
+    setIsHydrated(true);
   }, []);
+
+  // Set localStorage when values update
+  useEffect(() => {
+    if (isHydrated) {
+      localStorage.setItem("teacherName", teacherName);
+      localStorage.setItem("sessionId", sessionId.toString());
+    }
+  }, [teacherName, sessionId, isHydrated]);
+
+  if (!isHydrated) return null;
 
   return (
     <SessionContext.Provider
