@@ -69,8 +69,6 @@ export default function GroupDetails({
       return groupValue === 0 ? "Equal to class" : "+∞% / -∞%";
     }
 
-
-
     // Calculate difference ratio
     const difference = groupValue - classAvg;
     const percentChange = (difference / classAvg) * 100;
@@ -114,7 +112,7 @@ export default function GroupDetails({
             </div>
           ))}
         </div>
-        <Divider style={{ color: "#686666" }}>Summary</Divider>
+        <Divider style={{ color: "#686666" }}>Student Summary</Divider>
         <div>
           <ol
             style={{

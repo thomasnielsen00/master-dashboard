@@ -15,21 +15,37 @@ export default function Page() {
     console.log("Logging in with:", { teacherName });
   };
 
-  function handleTestStart(session: number) {
-    setSessionId(session);
-
+  function handleTestStart(testPart: number) {
     console.log("name: " + teacherName);
-    if (session === 1) {
-      // class with trouble
-      router.push("/dashboard");
-    }
-    if (session === 2) {
-      // this will be a good class
-      router.push("/dashboard");
-    }
-
-    if (session === 3) {
+    if (testPart === 1) {
+      // usability test start
+      setSessionId(1);
       router.push("/setup");
+    }
+    if (testPart === 2) {
+      // scenario test 1: All is good
+      setSessionId(1);
+      router.push("/dashboard");
+    }
+    if (testPart === 3) {
+      setSessionId(2);
+      router.push("/dashboard");
+    }
+    if (testPart === 4) {
+      setSessionId(3);
+      router.push("/dashboard");
+    }
+    if (testPart === 5) {
+      setSessionId(4);
+      router.push("/dashboard");
+    }
+    if (testPart === 6) {
+      setSessionId(5);
+      router.push("/dashboard");
+    }
+    if (testPart === 7) {
+      setSessionId(6);
+      router.push("/dashboard");
     }
   }
 
@@ -41,9 +57,10 @@ export default function Page() {
       <p style={{ fontSize: 20, marginBottom: 24 }}>
         Denne siden er laget for å sette opp riktig data og miljø før testingen
         skal gjennomføres. Du trenger ikke ta hensyn til denne siden når du
-        vurderer siden! Når du starter en del av testen vil du får instuksjoner
-        på skjermen, i tillegg har du instruksjonene og oppgavene på arket du
-        fikk.
+        vurderer systemet! Når du starter en del av testen vil du få
+        instuksjoner av testfasilitator. Du oppfordres til å tenke høyt og si
+        hva du tenker underveis. Det er ingen riktig eller feil svar, og det er
+        systemet som testes, ikke deg.
       </p>
       {/* <h2 style={{ fontWeight: 600 }}>Hello {teacherName || "Teacher"}</h2> */}
 
@@ -103,6 +120,30 @@ export default function Page() {
           onClick={() => handleTestStart(3)}
         >
           Start test del 3
+        </button>
+        <button
+          className={styles.buttonMain}
+          onClick={() => handleTestStart(4)}
+        >
+          Start test del 4
+        </button>
+        <button
+          className={styles.buttonMain}
+          onClick={() => handleTestStart(5)}
+        >
+          Start test del 5
+        </button>
+        <button
+          className={styles.buttonMain}
+          onClick={() => handleTestStart(6)}
+        >
+          Start test del 6
+        </button>
+        <button
+          className={styles.buttonMain}
+          onClick={() => handleTestStart(7)}
+        >
+          Start test del 7
         </button>
       </div>
 

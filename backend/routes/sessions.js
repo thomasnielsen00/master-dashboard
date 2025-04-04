@@ -19,7 +19,13 @@ router.get("/sessions", async (req, res) => {
 
 // implement this to external api that provides progression data
 router.get("/sessions/:session_id/classProgression", (req, res) => {
-  res.json(ClassProgression);
+  const sessionId = req.params.session_id;
+  const progression = ClassProgression[sessionId];
+  if (progression) {
+    res.json(progression);
+  } else {
+    res.status(404).json({ message: "No progression data for this session" });
+  }
 });
 
 router.get("/sessions/:session_id/classEngagement", (req, res) => {

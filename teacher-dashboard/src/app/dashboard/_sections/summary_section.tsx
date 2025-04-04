@@ -106,18 +106,20 @@ export default function SummarySection() {
 
     fetchClassEngagement(sessionId)
       .then((engagement) => {
-        setClassEngagement(Number(engagement));
-        setClassEngagementHistory((prev) => [...prev, Number(engagement)]);
+        const newEngagement = Number(engagement);
+
+        setClassEngagement(newEngagement);
+        setClassEngagementHistory((prev) => {
+          const updated = [...prev, newEngagement];
+          setEngagementTrend(getEngagementTrend(updated)); // update trend immediately
+          return updated;
+        });
       })
       .catch((err) => {
         console.error("Error loading class engagement data:", err);
       });
     // add a time here to refresh the data
   }, []);
-
-  useEffect(() => {
-    setEngagementTrend(getEngagementTrend(classEngagementHistory));
-  }, [classEngagementHistory]);
 
   return (
     <section className={styles.section}>

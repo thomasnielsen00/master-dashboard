@@ -63,14 +63,17 @@ function getClassEngagement(sessionId) {
 }
 
 function getClassAverageProgression(sessionId) {
-  if (!Array.isArray(ClassProgression) || ClassProgression.length === 0) {
+  if (
+    !Array.isArray(ClassProgression[sessionId]) ||
+    ClassProgression[sessionId].length === 0
+  ) {
     return 0;
   }
 
   let total = 0;
   let count = 0;
 
-  ClassProgression.forEach((group) => {
+  ClassProgression[sessionId].forEach((group) => {
     const dataPoints = group.data;
     if (Array.isArray(dataPoints) && dataPoints.length > 0) {
       const newestValue = dataPoints[dataPoints.length - 1].y;
@@ -277,7 +280,9 @@ async function getGroupsWithDetails(sessionId) {
 
     // Initialize this group if we haven't yet
     if (!groups[groupId]) {
-      const progressMatch = ClassProgression.find((p) => p.id === groupId);
+      const progressMatch = ClassProgression[sessionId].find(
+        (p) => p.id === groupId
+      );
       const progress_value =
         progressMatch && progressMatch.data.length > 0
           ? progressMatch.data.at(-1).y

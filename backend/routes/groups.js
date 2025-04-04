@@ -4,6 +4,7 @@ const {
   getGroupsBySession,
   getGroupsWithDetails,
 } = require("../database/groups");
+const ClassProgression = require("../data/classProgression");
 
 // get all groups from a session
 router.get("/sessions/:session_id/groups", async (req, res) => {
@@ -32,7 +33,8 @@ router.get("/sessions/:session_id/groups-with-details", (req, res) => {
 
 // get group progression
 router.get("/sessions/:session_id/groupProgression", (req, res) => {
-  const latestProgress = ClassProgression.map((group) => {
+  const sessionId = req.params.session_id;
+  const latestProgress = ClassProgression[sessionId].map((group) => {
     const lastPoint = group.data[group.data.length - 1];
     return {
       group_id: group.id,
