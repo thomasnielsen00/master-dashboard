@@ -11,7 +11,7 @@ This project is created as part of a master thesis at NTNU. The system is a Lear
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url](https://github.com/thomasnielsen00/master-dashboard)
+   git clone <https://github.com/thomasnielsen00/master-dashboard>
    cd master-dashboard
    ```
 
