@@ -52,15 +52,16 @@ export default function Page() {
   return (
     <div style={{ margin: "5rem 15rem" }}>
       <h1 style={{ fontSize: 32, fontWeight: 500, marginBottom: 16 }}>
-        Velkommen til test!
+        Welcome to the user test!
       </h1>
       <p style={{ fontSize: 20, marginBottom: 24 }}>
-        Denne siden er laget for å sette opp riktig data og miljø før testingen
-        skal gjennomføres. Du trenger ikke ta hensyn til denne siden når du
-        vurderer systemet! Når du starter en del av testen vil du få
-        instuksjoner av testfasilitator. Du oppfordres til å tenke høyt og si
-        hva du tenker underveis. Det er ingen riktig eller feil svar, og det er
-        systemet som testes, ikke deg.
+        This page is set up to prepare the correct data and environment before
+        the testing begins. You do not need to consider this page when
+        evaluating the system. When you start a part of the test, you will
+        receive instructions from the test facilitator. You are encouraged to
+        think aloud and say what you are thinking throughout the session. There
+        are no right or wrong answers, it is the system that is being tested,
+        not you.
       </p>
       {/* <h2 style={{ fontWeight: 600 }}>Hello {teacherName || "Teacher"}</h2> */}
 
@@ -78,14 +79,14 @@ export default function Page() {
             htmlFor="teacherName"
             style={{ display: "block", marginBottom: "0.5rem", width: 300 }}
           >
-            Vennligst skriv inn ditt navn først:
+            Please enter your name first:
           </label>
           <input
             id="teacherName"
             type="text"
             value={teacherName}
             onChange={(e) => setTeacherName(e.target.value)}
-            placeholder="Skriv inn navnet ditt"
+            placeholder="Enter your name"
             style={{ padding: "0.5rem", width: 300, borderRadius: 8 }}
           />
         </div>
@@ -107,43 +108,43 @@ export default function Page() {
           className={styles.buttonMain}
           onClick={() => handleTestStart(1)}
         >
-          Start test del 1
+          Start test part 1
         </button>
         <button
           className={styles.buttonMain}
           onClick={() => handleTestStart(2)}
         >
-          Start test del 2
+          Start test part 2
         </button>
         <button
           className={styles.buttonMain}
           onClick={() => handleTestStart(3)}
         >
-          Start test del 3
+          Start test part 3
         </button>
         <button
           className={styles.buttonMain}
           onClick={() => handleTestStart(4)}
         >
-          Start test del 4
+          Start test part 4
         </button>
         <button
           className={styles.buttonMain}
           onClick={() => handleTestStart(5)}
         >
-          Start test del 5
+          Start test part 5
         </button>
         <button
           className={styles.buttonMain}
           onClick={() => handleTestStart(6)}
         >
-          Start test del 6
+          Start test part 6
         </button>
         <button
           className={styles.buttonMain}
           onClick={() => handleTestStart(7)}
         >
-          Start test del 7
+          Start test part 7
         </button>
       </div>
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./navbar.module.css";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Avatar from "@mui/material/Avatar";
+import HomeIcon from "@mui/icons-material/Home";
 import path from "path";
 
 const pages = [
@@ -38,7 +39,7 @@ export default function Navbar() {
 
       <div className={styles.rightSection}>
         <Link href={"/"}>
-          <SettingsIcon style={{ fontSize: 28, cursor: "pointer" }} />
+          <HomeIcon style={{ fontSize: 28, cursor: "pointer" }} />
         </Link>
         <Avatar
           style={{

@@ -29,7 +29,7 @@ export default function FaceDetection() {
 
   useEffect(() => {
     const loadModels = async () => {
-      const MODEL_URL = "/models"; // Ensure models are in /public/models
+      const MODEL_URL = "/models"; 
       const feelingsData: Array<{
         emotions: faceapi.FaceExpressions;
         timestamp: number;
