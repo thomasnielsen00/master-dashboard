@@ -11,7 +11,7 @@ This project is created as part of a master thesis at NTNU. The system is a Lear
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [repository-url](https://github.com/thomasnielsen00/master-dashboard)
    cd master-dashboard
    ```
 
@@ -33,7 +33,7 @@ This project is created as part of a master thesis at NTNU. The system is a Lear
    npm install
    ```
 
-4. Ensure the `face-api.js` models are available in the `/models` directory. You can download them from the [face-api.js GitHub repository](https://github.com/justadudewhohacks/face-api.js). For more information, see: https://itnext.io/face-api-js-javascript-api-for-face-recognition-in-the-browser-with-tensorflow-js-bcc2a6c4cf07 
+4. Ensure the `face-api.js` models are available in the `/models` directory. You can download them from the [face-api.js GitHub repository](https://github.com/justadudewhohacks/face-api.js). For more information, see: [face-api.js guide](https://itnext.io/face-api-js-javascript-api-for-face-recognition-in-the-browser-with-tensorflow-js-bcc2a6c4cf07)
 
 ## Usage
 
